@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'style1.css') }}">
+    <script src="{{ url_for('static', filename = 'jquery.js') }}"></script>
+    <title>Cofe Dashboard</title>
+    <style type="text/css">
+      .loader{
+            position:fixed;
+            width:100%;
+            left:0;right:0;top:0;bottom:0;
+            background-color: rgba(255,255,255,0.7);
+            z-index:9999;
+            display:none;
+        }
+
+        @-webkit-keyframes spin {
+          from {-webkit-transform:rotate(0deg);}
+          to {-webkit-transform:rotate(360deg);}
+        }
+
+        @keyframes spin {
+          from {transform:rotate(0deg);}
+          to {transform:rotate(360deg);}
+        }
+
+        .loader::after {
+            content:'';
+            display:block;
+            position:absolute;
+            left:48%;top:40%;
+            width:40px;height:40px;
+            border-style:solid;
+            border-color:black;
+            border-top-color:transparent;
+            border-width: 4px;
+            border-radius:50%;
+            -webkit-animation: spin .8s linear infinite;
+            animation: spin .8s linear infinite;
+        }
+    .customer th{
+      text-align: center;
+      color: white;
+      background-color: #471708;
+      font-weight: bold;
+      border: 1px solid #471708;
+      padding: 15px;
+
+    }
+    .customer td{
+      text-align: center;
+      border: 1px solid #471708;
+      padding: 15px;
+    }
+    .action{
+      cursor: pointer;
+      color: white;
+      border-radius: 3px;
+      padding: 5px;
+      background-color: #471708;
+    }
+    div.gallery {
+      margin: 5px;
+      border: 1px solid #ccc;
+      float: left;
+      width: 240px;
+      height: 250px;
+    }
+
+    div.gallery:hover {
+      border: 1px solid #777;
+    }
+
+    div.gallery img {
+      width: 100%;
+      height: auto;
+    }
+
+    div.desc {
+      padding: 15px;
+      text-align: center;
+    }
+    img{
+      height: 200px;
+      width: 200px;
+    }
+    </style>
+  </head>
+  <body>
+    
+    <nav>
+      <div class="heading">
+        <h4>Cofe Junction</h4>
+      </div>
+      <ul class="nav-links">
+        <li><a class="active" id="hometab">Home</a></li>
+        <li><a href="#" id="customertab">Customers</a></li>
+        <li><a href="#" id="invoices">Invoices</a></li>
+        <li><a href="#" id="contact">Contact</a></li>
+      </ul>
+    </nav>
+
+<div class="loader"></div>
+    
+    <div id="hometabfield" class="tabs">
+      <div class="gallery">
+        <a target="_blank" href="#">
+          <img src="{{ url_for('static', filename = 'cof1.jpg') }}" alt="Cinque Terre" width="600" height="400">
+        </a>
+        <div class="desc">Espresso as a standalone coffee is served everywhere.</div>
+      </div>
+      <div class="gallery">
+        <a target="_blank" href="#">
+          <img src="{{ url_for('static', filename = 'cof2.jpg') }}" alt="Cinque Terre" width="600" height="400">
+        </a>
+        <div class="desc">Doppio in Italian literally means ‘double'.</div>
+      </div>
+      <div class="gallery">
+        <a target="_blank" href="#">
+          <img src="{{ url_for('static', filename = 'cof3.jpg') }}" alt="Cinque Terre" width="600" height="400">
+        </a>
+        <div class="desc">Ah, coffee and chocolate! </div>
+      </div>
+      <div class="gallery">
+        <a target="_blank" href="#">
+          <img src="{{ url_for('static', filename = 'cof4.jpg') }}" alt="Cinque Terre" width="600" height="400">
+        </a>
+        <div class="desc">cappuccino contains more milk-to-coffee ratio.</div>
+      </div>
+      <div class="gallery">
+        <a target="_blank" href="#">
+          <img src="{{ url_for('static', filename = 'cof5.jpg') }}" alt="Cinque Terre" width="600" height="400">
+        </a>
+        <div class="desc">This exciting Spanish offering literally means ‘coffee with ice.’</div>
+      </div>
+      <div class="gallery">
+        <a target="_blank" href="#">
+          <img src="{{ url_for('static', filename = 'cof6.jpg') }}" alt="Cinque Terre" width="600" height="400">
+        </a>
+        <div class="desc">Café au Lait literally means ‘coffee with milk.</div>
+      </div>
+      <div class="gallery">
+        <a target="_blank" href="#">
+          <img src="{{ url_for('static', filename = 'cof7.jpg') }}" alt="Cinque Terre" width="600" height="400">
+        </a>
+        <div class="desc">The Turkish like their coffee light and sweet. Hence, a majority of this coffee is sugar water.</div>
+      </div>
+      <div class="gallery">
+        <a target="_blank" href="#">
+          <img src="{{ url_for('static', filename = 'cof8.jpg') }}" alt="Cinque Terre" width="600" height="400">
+        </a>
+        <div class="desc">The Irish sure know to stir things up and making literally any dish or drink interesting.</div>
+      </div>
+      <div class="gallery">
+        <a target="_blank" href="#">
+          <img src="{{ url_for('static', filename = 'cof9.jpg') }}" alt="Cinque Terre" width="600" height="400">
+        </a>
+        <div class="desc">It involves Espresso mixed with dripped or filter coffee, that is water poured</div>
+      </div>
+      <div class="gallery">
+        <a target="_blank" href="#">
+          <img src="{{ url_for('static', filename = 'cof10.jpg') }}" alt="Cinque Terre" width="600" height="400">
+        </a>
+        <div class="desc">Those who say they like their coffee black talk about Café Americano. </div>
+      </div>
+       
+
+    </div>
+
+    <div id="customertabfield" class="hide tabs">
+      <br>
+      <button id="expand" style="margin-left: 15px">+ Add new customer</button>
+      <br><br>
+      <div id="inputfields" class="hide">
+        <input type="text" id="name" name="" style="margin-left: 15px" placeholder="Name">
+        <input type="text" id="email" name="" placeholder="Email">
+        <input type="text" id="phone" name="" placeholder="Phone">
+        <button id="save">Save</button>
+      </div><br>
+      <table id="customer" class="customer" rules="all" style="width: 80%; margin: auto; text-align: center; border: 2px solid #471708" cellpadding="5px">
+        <thead>
+          <tr>
+            <th>Customer ID</th>
+            <th>Stripe ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="customertable">
+          
+        </tbody>
+      </table>
+      <input type="hidden" id="mode">
+    </div>
+
+    <div id="invoicesfield" class="hide tabs">
+        <br>
+        <button id="invoiceexpand" style="margin-left: 15px">+ Add new invoice</button>
+        <br><br>
+        <div id="invoiceinputfields" class="hide">
+          <select style="margin-left: 15px" id="customerid"></select>
+          <input type="number" id="subtotal" name="" placeholder="Sub Total">
+          <input type="number" id="discount" name="" placeholder="Discount">
+          <input type="number" id="total"   disabled name="" placeholder="Total">
+          <button id="invoicesave">Save</button>
+        </div><br>
+        <table id="invoice" class="customer" rules="all" style="width: 80%; margin: auto; text-align: center; border: 2px solid #471708" cellpadding="5px">
+          <thead>
+            <tr>
+              <th>Invoice ID</th>
+              <th>Stripe Invoice ID</th>
+              <th>Customer ID</th>
+              <th>Total</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody id="invoicetable">
+            
+          </tbody>
+        </table>
+        <input type="hidden" id="ivoicemode">
+    </div>
+
+
+    <div id="contactfield" class="hide tabs">
+      <br><br>
+      <table id="contact" class="customer" rules="all" style="width: 80%; margin: auto; text-align: center; border: 2px solid #471708" cellpadding="5px">
+        <thead>
+          <tr>
+            <th>S. No</th>
+            <th>Branch</th>
+            <th>Incharge</th>
+            <th>Authority</th>
+            <th>Email</th>
+            <th>Phone</th>
+          </tr>
+        </thead>
+        <tbody id="contact">
+          <tr>
+            <td>1</td>
+            <td>Delhi</td>
+            <td>Mr. K. Jhon</td>
+            <td>General Manager</td>
+            <td>jhon.cofejunc@gmail.com</td>
+            <td>9878675432</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Mumbai</td>
+            <td>Mr. A. George</td>
+            <td>General Manager</td>
+            <td>george.cofejunc@gmail.com</td>
+            <td>6587452434</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Karnataka</td>
+            <td>Mr. A. Benny</td>
+            <td>General Manager</td>
+            <td>benny.cofejunc@gmail.com</td>
+            <td>8567824356</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Kashmir</td>
+            <td>Mr. A. Patel</td>
+            <td>General Manager</td>
+            <td>patel.cofejunc@gmail.com</td>
+            <td>9567431267</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Tamilnadu</td>
+            <td>Mr. A. Gunal</td>
+            <td>General Manager</td>
+            <td>gunal.cofejunc@gmail.com</td>
+            <td>8788654231</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+
+        let expand = 0;
+        let invexpand = 0;
+        let stripeid = ""
+        let custid = ""
+
+        $("#expand").click(function(){
+          $("#mode").val("add")
+          if (expand == 0){
+            expand = 1
+            $("#inputfields").show();
+          }else{
+              expand = 0
+            $("#inputfields").hide();
+          }
+        });
+
+        $("#invoiceexpand").click(function(){
+          if (invexpand == 0){
+            invexpand = 1
+            $("#invoiceinputfields").show();
+          }else{
+              invexpand = 0
+            $("#invoiceinputfields").hide();
+          }
+        });
+
+        $("#hometab").click(function(){
+            setTabActive(this);
+        });
+        $("#customertab").click(function(){
+            setTabActive(this);
+        });
+        $("#invoices").click(function(){
+            setTabActive(this);
+        });
+        $("#contact").click(function(){
+            setTabActive(this);
+        });
+
+        $("#subtotal").keyup(function(){
+          var subtotal = $("#subtotal").val()
+          var discount = $("#discount").val()
+          if (subtotal == ''){ subtotal = 0}
+          if (discount == ''){ discount = 0}
+          var total = parseFloat(subtotal).toFixed(2) - parseFloat(discount).toFixed(2)
+          $("#total").val(total)
+        });
+
+        $("#discount").keyup(function(){
+          var subtotal = $("#subtotal").val()
+          var discount = $("#discount").val()
+          if (subtotal == ''){ subtotal = 0}
+          if (discount == ''){ discount = 0}
+          var total = parseFloat(subtotal).toFixed(2) - parseFloat(discount).toFixed(2)
+          $("#total").val(total)
+        });
+
+        $("#invoicesave").click(function(){
+
+          var customerid  = $("#customerid").val()
+          var total       = $("#total").val()
+          var subtotal    = $("#subtotal").val()
+          var discount    = $("#discount").val()
+
+          if (customerid == '' || total == '' || subtotal == '' || discount == ''){
+            alert("Please fill the fields")
+          }else{
+            $.ajax({
+              url:"/addinvoice", 
+              type: "post", 
+              dataType: 'json',
+              data: {"customerid":customerid, "total":total, "subtotal":subtotal, "discount":discount},
+              beforeSend: function(){
+                  $(".loader").show()
+              },
+              success: function(output){
+                $(".loader").hide()
+                if (output == 1){
+                  alert("Invoice Created Successfully")
+                  updateinvoicerecords()
+                }else{
+                  alert("Something Went Wrong!")
+                }
+              }
+            });
+          }
+        });
+
+        $("#save").click(function(){
+          
+          var namedata  = $("#name").val()
+          var emaildata = $("#email").val()
+          var phonedata = $("#phone").val()
+
+          if ($("#mode").val() == "add") {
+            $.ajax({
+              url:"/addcustomer", 
+              type: "post", 
+              dataType: 'json',
+              data: {"namedata":namedata, "emaildata":emaildata, "phonedata":phonedata},
+              beforeSend: function(){
+                $(".loader").show()
+              },
+              success: function(output){
+                $(".loader").hide()
+                if (output == 1){
+                  updaterecords();
+                  alert("Customer Data Added Successfully!")
+                }else{
+                  alert("Something went wrong!")
+                }
+              }
+            });
+          }else if($("#mode").val() == "edit"){
+            $.ajax({
+              url:"/editcustomer", 
+              type: "post", 
+              dataType: 'json',
+              data: {"namedata":namedata, "emaildata":emaildata, "phonedata":phonedata, "stripeid":stripeid, "custid":custid},
+              beforeSend: function(){
+              },
+              success: function(output){
+                if (output == 1){
+                  updaterecords();
+                  alert("Customer Data Added Successfully!")
+                }else{
+                  alert("Something went wrong!")
+                }
+              }
+            });
+          }
+          
+        });
+
+        updateinvoicerecords()
+        function updateinvoicerecords(){
+            $.ajax({
+              url:"/getinvoicerecords", 
+              type: "post", 
+              dataType: 'json',
+              data: {},
+              beforeSend: function(){
+                $(".loader").show()
+                },
+                success: function(output){
+                  $(".loader").hide()
+                  var appenddata = ''
+                  if (output.length > 0){
+
+                    for(var i=0; i<= output.length-1; i++){
+                      appenddata += `<tr>
+                      <td>`+"INV-"+output[i]["invoice_id"]+`</td>
+                      <td>`+output[i]["stripe_invoiceid"]+`</td>
+                      <td>`+output[i]["customer_id"]+`</td>
+                      <td>`+output[i]["total"]+`</td>
+                      <td>`+output[i]["created_at"]+`</td>`
+                    }
+                  }else{
+                    appenddata = "<tr><td colspan = '6' style='text-align:center'>No Data Found!</td></tr>"
+                  }
+                  $("#invoicetable").html(appenddata);
+                },
+                error:function(){
+                    alert("Something went wrong! Please try again.")
+                  }
+            });
+          }
+
+        updaterecords()
+        function updaterecords(){
+            $.ajax({
+              url:"/getcustrecords", 
+              type: "post", 
+              dataType: 'json',
+              data: {},
+              beforeSend: function(){
+                $(".loader").show()
+                },
+                success: function(output){
+                  $(".loader").hide()
+                  let appenddata = ''
+                  let custdata = '<option value="">Select Customer</option>'
+                  if (output.length > 0){
+                    for(var i=0; i<= output.length-1; i++){
+
+                      custdata += '<option value="'+output[i]["stripe_cust_id"]+'">'+output[i]["customer_id"]+"  "+output[i]["name"]+"</option>";
+                      appenddata += `<tr>
+                      <td>`+"CF-"+output[i]["customer_id"]+`</td>
+                      <td>`+output[i]["stripe_cust_id"]+`</td>
+                      <td>`+output[i]["name"]+`</td>
+                      <td>`+output[i]["email"]+`</td>
+                      <td>`+output[i]["phone"]+`</td>
+                      <td><span class='action down' onclick=action(`+"CF-"+output[i]["customer_id"]+",'"+output[i]["stripe_cust_id"]+`','delete')>Delete</span></td>`
+                    }
+                  }else{
+                    appenddata = "<tr><td colspan = '6' style='text-align:center'>No Data Found!</td></tr>"
+                  }
+                  $("#customerid").append(custdata)
+                  $("#customertable").html(appenddata);
+                },
+                error:function(){
+                    alert("Something went wrong! Please try again.")
+                  }
+            });
+          }
+
+        
+        function setTabActive(obj){
+          $("a").removeClass('active')
+          $(obj).addClass('active')
+
+          var iddata = $(obj).attr('id');
+          iddata = "#"+iddata+"field"
+          $(".tabs").addClass("hide")
+          $(iddata).removeClass("hide")
+        }
+
+      });
+
+       function action(custid, stripeid, actiondata){
+            if (actiondata == 'delete'){
+              $("#mode").val("delete")
+              $.ajax({
+                url:"/deletecustomer", 
+                type: "post", 
+                dataType: 'json',
+                data: {"stripeid":stripeid, "custid":custid},
+                beforeSend: function(){
+                  $(".loader").show()
+                },
+                success: function(output){
+                  $(".loader").hide()
+                  if (output == 1){
+                    updaterecordss()
+                    alert("Customer Data Deleted Successfully!")
+                  }else{
+                    alert("Something went wrong!")
+                  }
+                }
+            });
+            }else{
+             $("#mode").val("edit")
+            
+             stripeid = stripeid
+             custid = custid
+            }
+          }
+
+          function updaterecordss(){
+            $.ajax({
+              url:"/getcustrecords", 
+              type: "post", 
+              dataType: 'json',
+              data: {},
+              beforeSend: function(){
+                $(".loader").show()
+                },
+                success: function(output){
+                  let appenddata = ''
+                  if (output.length > 0){
+                    $(".loader").hide()
+                    for(var i=0; i<= output.length-1; i++){
+                      appenddata += `<tr>
+                      <td>`+"CF-"+output[i]["customer_id"]+`</td>
+                      <td>`+output[i]["stripe_cust_id"]+`</td>
+                      <td>`+output[i]["name"]+`</td>
+                      <td>`+output[i]["email"]+`</td>
+                      <td>`+output[i]["phone"]+`</td>
+                      <td><span class='action mail' onclick=action(`+output[i]["stripe_cust_id"]+`,'edit')>Edit</span>&nbsp;&nbsp;<span class='action down' onclick=action('`+output[i]["stripe_cust_id"]+`','delete')>Delete</span></td>`
+                    }
+                  }else{
+                    appenddata = "<tr><td colspan = '6' style='text-align:center'>No Data Found!</td></tr>"
+                  }
+                  $("#customertable").html(appenddata);
+                },
+                error:function(){
+                    alert("Something went wrong! Please try again.")
+                  }
+            });
+          }
+    </script>
+  </body>
+</html>

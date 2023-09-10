@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<!-- Coding by CodingNepal | www.codingnepalweb.com-->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title>Cofe Point Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'style.css') }}">
+    <script src="{{ url_for('static', filename = 'jquery.js') }}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+  <div class="container">
+    <input type="checkbox" id="flip">
+    <div class="cover">
+      <div class="front">
+        <img src="{{ url_for('static', filename = 'login.avif') }}" alt="">
+        <div class="text">
+          <span class="text-1">EvToday's good mood is <br> sponsored by coffee.</span>
+          <span class="text-2">Let's get connected</span>
+        </div>
+      </div>
+    </div>
+    <div class="forms">
+        <div class="form-content">
+          <div class="login-form">
+            <div class="title">Admin Login</div>
+          <form action="#">
+            <div class="input-boxes">
+              <div class="input-box">
+                <i class="fas fa-user"></i>
+                <input type="text" placeholder="Enter your userid" id="userid" required>
+              </div>
+              <div class="input-box">
+                <i class="fas fa-lock"></i>
+                <input type="password" placeholder="Enter your password" id="password" required>
+              </div>
+              <div class="button input-box">
+                <input type="button" id="login" value="Login">
+              </div>
+            </div>
+        </form>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+  $(document).ready(function(){
+      $("#login").click(function(){
+        
+        var userid  = $("#userid").val();
+        var password = $("#password").val();
+
+        if (userid =='' || password == ''){
+          alert("Please enter the userid and password")
+        }else{
+         $.ajax({
+            url:"/login", 
+            type: "post", 
+            dataType: 'json',
+            data: {"userid":userid, "password":password},
+            beforeSend: function(){
+                  $(".loader").show();
+              },
+              success: function(output){
+                $(".loader").hide();
+                if (output == 0){
+                  alert('Username and Password does not match!')
+                }else if (output == 1){
+                  location.href = "{{ url_for('businesspage') }}"
+                }else{
+                  alert("Something went wrong! Please try again.")
+                }
+              },
+              error:function(){
+                    $(".loader").hide();
+                    alert("Something went wrong! Please try again.")
+                  }
+            });
+        }
+
+      });
+    });
+</script>
+
+</body>
+</html>
